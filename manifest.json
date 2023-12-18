@@ -8,15 +8,15 @@
       "componentName": "aitranslator-page",
       "componentPath": "web-components/aitranslator-page/aitranslator-page.html",
       "cssPaths": [
-        "web-components/proofreader-page/proofreader-page.css"
+        "web-components/aitranslator-page/aitranslator-page.css"
       ]
     }
   ],
   "presenters": [
     {
-      "presenterPath": "web-components/proofreader-page/proofreader-page.js",
+      "presenterPath": "web-components/aitranslator-page/aitranslator-page.js",
       "presenterName": "aiTranslatorPage",
-      "forComponent": "proofreader-page"
+      "forComponent": "aitranslator-page"
     }
   ]
 }
