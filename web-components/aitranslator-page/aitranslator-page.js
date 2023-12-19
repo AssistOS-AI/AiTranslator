@@ -59,7 +59,7 @@ export class aiTranslatorPage {
         this.details = formData.data.details;
         let flowId = webSkel.currentUser.space.getFlowIdByName("Translate");
         let result = await webSkel.getService("LlmsService").callFlow(flowId, this.text, formData.data.personality, this.language, this.details);
-        this.generatedText = result.responseString;
+        this.generatedText = result.responseJson ? JSON.stringify(result.responseJson) : result.responseString;
         this.invalidate();
 
     }
