@@ -18,6 +18,12 @@
       "presenterName": "aiTranslatorPage",
       "forComponent": "aitranslator-page"
     }
+  ],
+  "services": [
+    {
+      "serviceName":"routingService",
+      "servicePath": "services/routingService.js"
+    }
   ]
 }
 
