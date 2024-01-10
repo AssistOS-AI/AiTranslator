@@ -6,14 +6,13 @@ export class routingService {
 
         const AITRANSLATOR_PAGE = "aitranslator-page";
 
-        if(locationArray.length === 0){
+       if (locationArray.length === 0 || locationArray[0] === AITRANSLATOR_PAGE) {
             const pageUrl = `${webSkel.currentUser.space.id}/${appName}/${AITRANSLATOR_PAGE}`;
             await webSkel.changeToDynamicPage(AITRANSLATOR_PAGE, pageUrl);
             return;
         }
-
-        if (locationArray[0] !== AITRANSLATOR_PAGE) {
-            console.error("Invalid URL structure.");
+         if(locationArray[locationArray.length-1]!== AITRANSLATOR_PAGE){
+         console.error(`Invalid URL: URL must end with ${AITRANSLATOR_PAGE}`);
             return;
         }
 
