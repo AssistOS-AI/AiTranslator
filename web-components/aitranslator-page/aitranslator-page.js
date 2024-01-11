@@ -69,9 +69,11 @@ export class aiTranslatorPage {
             }
     }
     async copyText(_target){
-        let text=webSkel.UtilsService.reverseQuerySelector(_target,".generated-text")?.innerText;
+        let text=webSkel.UtilsService.reverseQuerySelector(_target,".generated-text");
         if(text){
-            await navigator.clipboard.writeText(text);
+            await navigator.clipboard.writeText(text.innerText);
+            text.insertAdjacentHTML("afterbegin", `<confirmation-popup data-presenter="confirmation-popup" 
+                    data-message="Copied!" data-left="${text.offsetWidth/2}"></confirmation-popup>`);
         }
     }
 }
