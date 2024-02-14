@@ -51,14 +51,14 @@ export class aiTranslatorPage {
     }
 
     async translate(formElement) {
-        const formData= await webSkel.UtilsService.extractFormInformation(formElement);
+        const formData= await webSkel.extractFormInformation(formElement);
 
         this.text = formData.data.text;
         this.language = formData.data.language;
         this.personality = webSkel.currentUser.space.getPersonality(formData.data.personality);
         this.details = formData.data.details;
         let flowId = webSkel.currentUser.space.getFlowIdByName("Translate");
-        let result = await webSkel.getService("LlmsService").callFlow(flowId, this.text, formData.data.personality, this.language, this.details);
+        let result = await webSkel.appServices.callFlow(flowId, this.text, formData.data.personality, this.language, this.details);
         this.generatedText = result.responseJson ? JSON.stringify(result.responseJson) : result.responseString;
         this.invalidate();
 
@@ -69,11 +69,11 @@ export class aiTranslatorPage {
             }
     }
     async copyText(_target){
-        let text=webSkel.UtilsService.reverseQuerySelector(_target,".generated-text");
+        let text=webSkel.reverseQuerySelector(_target,".generated-text");
         if(text){
             await navigator.clipboard.writeText(text.innerText);
-            text.insertAdjacentHTML("afterbegin", `<confirmation-popup data-presenter="confirmation-popup" 
-                    data-message="Copied!" data-left="${text.offsetWidth/2}"></confirmation-popup>`);
+            text.insertAdjacentHTML("afterend", `<confirmation-popup data-presenter="confirmation-popup" 
+                    data-message="Copied!" data-left="${text.offsetWidth+150}"></confirmation-popup>`);
         }
     }
 }
