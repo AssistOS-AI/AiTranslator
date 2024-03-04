@@ -16,14 +16,8 @@
   "presenters": [
     {
       "presenterPath": "web-components/aitranslator-page/aitranslator-page.js",
-      "presenterName": "aiTranslatorPage",
+      "presenterName": "AiTranslatorPage",
       "forComponent": "aitranslator-page"
-    }
-  ],
-  "services": [
-    {
-      "serviceName":"routingService",
-      "servicePath": "services/routingService.js"
     }
   ],
   "manager": {

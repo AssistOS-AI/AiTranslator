@@ -1,5 +1,5 @@
 
-export class aiTranslatorPage {
+export class AiTranslatorPage {
     constructor(element, invalidate) {
         this.element = element;
         this.invalidate = invalidate;
