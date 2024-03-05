@@ -5,18 +5,10 @@
   "entryPointComponent": "aitranslator-page",
   "components": [
     {
-      "componentName": "aitranslator-page",
-      "componentPath": "web-components/aitranslator-page/aitranslator-page.html",
-      "cssPaths": [
-        "web-components/aitranslator-page/aitranslator-page.css"
-      ]
-    }
-  ],
-  "presenters": [
-    {
-      "presenterPath": "web-components/aitranslator-page/aitranslator-page.js",
-      "presenterName": "aiTranslatorPage",
-      "forComponent": "aitranslator-page"
+      "name": "aitranslator-page",
+      "presenterClassName": "aiTranslatorPage",
+      "type": "pages"
+
     }
   ],
   "services": [
