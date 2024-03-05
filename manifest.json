@@ -6,15 +6,15 @@
   "components": [
     {
       "name": "aitranslator-page",
-      "presenterClassName": "aiTranslatorPage",
+      "presenterClassName": "AiTranslatorPage",
       "type": "pages"
 
     }
   ],
   "services": [
     {
-      "serviceName":"routingService",
-      "servicePath": "services/routingService.js"
+      "serviceName":"RoutingService",
+      "servicePath": "services/RoutingService.js"
     }
   ],
   "manager": {
