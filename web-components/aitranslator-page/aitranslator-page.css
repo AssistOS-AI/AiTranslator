@@ -94,7 +94,7 @@ option {
 }
 .translate-cell{
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 42px;
     text-align: left;
     color: var(--left-sidebar);
