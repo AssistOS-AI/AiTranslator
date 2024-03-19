@@ -14,7 +14,7 @@ export class AiTranslatorPage {
             this.selectedPersonality = `<option value="${this.personality.id}" selected>${this.personality.name}</option>`
         }
         let stringHTML = "";
-        for(let personality of webSkel.currentUser.space.personalities){
+        for(let personality of system.space.personalities){
             stringHTML+=`<option value=${personality.id}>${personality.name}</option>`;
         }
         this.personalitiesOptions = stringHTML;
@@ -51,14 +51,14 @@ export class AiTranslatorPage {
     }
 
     async translate(formElement) {
-        const formData= await webSkel.extractFormInformation(formElement);
+        const formData= await system.UI.extractFormInformation(formElement);
 
         this.text = formData.data.text;
         this.language = formData.data.language;
-        this.personality = webSkel.currentUser.space.getPersonality(formData.data.personality);
+        this.personality = system.space.getPersonality(formData.data.personality);
         this.details = formData.data.details;
-        let flowId = webSkel.currentUser.space.getFlowIdByName("Translate");
-        let result = await webSkel.appServices.callFlow(flowId, this.text, formData.data.personality, this.language, this.details);
+        let flowId = system.space.getFlowIdByName("Translate");
+        let result = await system.services.callFlow(flowId, this.text, formData.data.personality, this.language, this.details);
         this.generatedText = result.responseJson ? JSON.stringify(result.responseJson) : result.responseString;
         this.invalidate();
 
@@ -69,7 +69,7 @@ export class AiTranslatorPage {
             }
     }
     async copyText(_target){
-        let text=webSkel.reverseQuerySelector(_target,".generated-text");
+        let text=system.UI.reverseQuerySelector(_target,".generated-text");
         if(text){
             await navigator.clipboard.writeText(text.innerText);
             text.insertAdjacentHTML("afterend", `<confirmation-popup data-presenter="confirmation-popup" 
