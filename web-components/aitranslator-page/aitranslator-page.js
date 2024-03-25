@@ -65,7 +65,7 @@ export class AiTranslatorPage {
             maxTokens: ""
         }
         let result = await system.services.callFlow(flowId, context, formData.data.personality);
-        this.generatedText = result.responseJson ? JSON.stringify(result.responseJson) : result.responseString;
+        this.generatedText = result ? JSON.stringify(result) : result;
         this.invalidate();
 
     }
