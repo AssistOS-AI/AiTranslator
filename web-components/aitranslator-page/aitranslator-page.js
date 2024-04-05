@@ -18,6 +18,7 @@ export class AiTranslatorPage {
             stringHTML+=`<option value=${personality.id}>${personality.name}</option>`;
         }
         this.personalitiesOptions = stringHTML;
+        this.background = `spaces/${system.space.id}/applications/ProofReader/assets/background.png`;
     }
 
     afterRender(){
