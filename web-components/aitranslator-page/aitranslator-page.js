@@ -40,7 +40,7 @@ export class AiTranslatorPage {
         }
 
         if(this.generatedText){
-           let aiText = this.element.querySelector(".generated-text-container");
+           let aiText = this.element.querySelector(".generated-text");
            aiText.style.display = "flex";
         }
 
@@ -78,8 +78,8 @@ export class AiTranslatorPage {
         let text=system.UI.reverseQuerySelector(_target,".generated-text");
         if(text){
             await navigator.clipboard.writeText(text.innerText);
-            text.insertAdjacentHTML("afterend", `<confirmation-popup data-presenter="confirmation-popup" 
-                    data-message="Copied!" data-left="${text.offsetWidth+150}"></confirmation-popup>`);
+            text.insertAdjacentHTML("afterbegin", `<confirmation-popup data-presenter="confirmation-popup" 
+                    data-message="Copied!" data-left="${text.offsetWidth/2}"></confirmation-popup>`);
         }
     }
 }
