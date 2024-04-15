@@ -58,14 +58,12 @@ export class AiTranslatorPage {
         this.language = formData.data.language;
         this.personality = assistOS.space.getPersonality(formData.data.personality);
         this.details = formData.data.details;
-        let flowId = assistOS.space.getFlowIdByName("Translate");
-        let context = {
+        let result = await assistOS.callFlow("Translate",  {
             text: this.text,
             language: this.language,
             prompt: formData.data.details,
             maxTokens: ""
-        }
-        let result = await assistOS.services.callFlow(flowId, context, formData.data.personality);
+        }, formData.data.personality);
         this.generatedText = result ? JSON.stringify(result) : result;
         this.invalidate();
 
