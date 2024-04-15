@@ -14,11 +14,11 @@ export class AiTranslatorPage {
             this.selectedPersonality = `<option value="${this.personality.id}" selected>${this.personality.name}</option>`
         }
         let stringHTML = "";
-        for(let personality of system.space.personalities){
+        for(let personality of assistOS.space.personalities){
             stringHTML+=`<option value=${personality.id}>${personality.name}</option>`;
         }
         this.personalitiesOptions = stringHTML;
-        this.background = `spaces/${system.space.id}/applications/ProofReader/assets/background.png`;
+        this.background = `spaces/${assistOS.space.id}/applications/ProofReader/assets/background.png`;
     }
 
     afterRender(){
@@ -52,20 +52,20 @@ export class AiTranslatorPage {
     }
 
     async translate(formElement) {
-        const formData= await system.UI.extractFormInformation(formElement);
+        const formData= await assistOS.UI.extractFormInformation(formElement);
 
         this.text = formData.data.text;
         this.language = formData.data.language;
-        this.personality = system.space.getPersonality(formData.data.personality);
+        this.personality = assistOS.space.getPersonality(formData.data.personality);
         this.details = formData.data.details;
-        let flowId = system.space.getFlowIdByName("Translate");
+        let flowId = assistOS.space.getFlowIdByName("Translate");
         let context = {
             text: this.text,
             language: this.language,
             prompt: formData.data.details,
             maxTokens: ""
         }
-        let result = await system.services.callFlow(flowId, context, formData.data.personality);
+        let result = await assistOS.services.callFlow(flowId, context, formData.data.personality);
         this.generatedText = result ? JSON.stringify(result) : result;
         this.invalidate();
 
@@ -76,7 +76,7 @@ export class AiTranslatorPage {
             }
     }
     async copyText(_target){
-        let text=system.UI.reverseQuerySelector(_target,".generated-text");
+        let text=assistOS.UI.reverseQuerySelector(_target,".generated-text");
         if(text){
             await navigator.clipboard.writeText(text.innerText);
             text.insertAdjacentHTML("afterbegin", `<confirmation-popup data-presenter="confirmation-popup" 
